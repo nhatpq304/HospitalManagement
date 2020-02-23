@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class UserController extends Controller
 
             if($user->save()) {
                 return response()->json([
-                    "user" => $user
+                    "user" => new UserResource($user)
                 ],201);
             }else {
                 return response()->json([],500);

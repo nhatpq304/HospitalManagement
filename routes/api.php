@@ -14,8 +14,12 @@ use Illuminate\Http\Request;
 */
 
 
-Route::group(['namespace' => 'Api'], function () {
+Route::group(['namespace' => 'api'], function () {
     Route::resource('users', 'UserController');
+
+    Route::group(['prefix' => 'auth',], function () {
+        Route::post('login', 'AuthController@login')->name('auth.login');
+    });
 });
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
