@@ -13,6 +13,12 @@
 
 
 Route::group(['namespace' => 'api'], function () {
+    Route::get('test', function(){
+        $user = \App\User::find(1)->with('permissionGroups.permissions')->get();
+        return response()->json([
+            $user
+        ]);
+    });
     Route::resource('users', 'UserController');
 
     Route::group(['prefix' => 'auth'], function () {

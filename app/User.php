@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\PermissionGroup;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,5 +42,9 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         return $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function permissionGroups(){
+        return $this->belongsToMany(PermissionGroup::class, 'users_permission_groups', 'user_id', 'permission_group_id');
     }
 }
