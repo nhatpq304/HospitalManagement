@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     function login(LoginRequest $request)
@@ -25,6 +25,14 @@ class AuthController extends Controller
         return response()->json([
             'user' => new UserResource($user),
             'token' => $tokenResult->accessToken
-        ]);
+        ],200);
+    }
+
+    function getUser(Request $request) {
+        $user = $request->user();
+
+        return response()->json([
+            'user' => $user
+        ], 200);
     }
 }

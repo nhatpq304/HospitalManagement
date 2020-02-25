@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,11 +15,16 @@ use Illuminate\Http\Request;
 Route::group(['namespace' => 'api'], function () {
     Route::resource('users', 'UserController');
 
-    Route::group(['prefix' => 'auth',], function () {
+    Route::group(['prefix' => 'auth'], function () {
         Route::post('login', 'AuthController@login')->name('auth.login');
+
+        Route::group(['middleware'=> 'auth:api'], function () {
+            Route::get('user', 'AuthController@getUser')->name('auth.user');
+        });
     });
+
+
+
+
 });
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
