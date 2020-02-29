@@ -12,7 +12,7 @@
 */
 
 
-Route::group(['namespace' => 'api'], function () {
+Route::group(['namespace' => 'Api'], function () {
     Route::get('test', function(){
         $user = \App\User::find(1)->with('permissionGroups.permissions')->get();
         return response()->json([
