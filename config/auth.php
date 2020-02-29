@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'session',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
