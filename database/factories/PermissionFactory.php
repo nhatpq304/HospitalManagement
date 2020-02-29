@@ -5,8 +5,9 @@
 use App\Model;
 use Faker\Generator as Faker;
 
-$factory->define(\App\Models\PermissionGroup::class, function (Faker $faker) {
+$factory->define(\App\Models\Permission::class, function (Faker $faker) {
     return [
-        'group_name' => $faker->name,
+        'permission_name' => $faker->name,
+        'permission_type' => 'ALL',
     ];
 });
