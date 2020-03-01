@@ -12,11 +12,37 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        try {
+            $this->authorize('index', new User());
 
+            return response()->json([
+            "user" => new UserResource($request->user())
+        ],201);
+        }catch (AuthorizationException $exception) {
+            return response()->json([
+                'error' => 'Not authorized.'
+            ], 403);
+        }
+    }
+
+    public function show(User $user) {
+        try {
+            $this->authorize('show', new User());
+
+            return response()->json([
+                "user" => new UserResource($user)
+            ],201);
+        }catch (AuthorizationException $exception) {
+            return response()->json([
+                'error' => 'Not authorized.'
+            ], 403);
+        }
     }
 
     public function store(CreateUserRequest $request) {
+        try {
+            $this->authorize('store', new User());
 
             $user = new User();
             $user->fill($request->all());
@@ -28,7 +54,11 @@ class UserController extends Controller
             }else {
                 return response()->json([],500);
             }
-
+        }catch (AuthorizationException $exception) {
+            return response()->json([
+                'error' => 'Not authorized.'
+            ], 403);
+        }
     }
 
     public function update(UpdateUserRequest $request, User $user)
@@ -53,7 +83,7 @@ class UserController extends Controller
             ], 200);
         }catch (AuthorizationException $exception) {
             return response()->json([
-                'error' => 'Not Authorized.'
+                'error' => 'Not authorized.'
             ], 403);
         }
 

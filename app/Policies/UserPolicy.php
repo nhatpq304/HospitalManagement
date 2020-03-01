@@ -22,6 +22,16 @@ class UserPolicy extends BasePolicy
         $this->permissionType = permissionType::$USER;
     }
 
+    public function index(User $user, User $model)
+    {
+        return $this->hasPermission($user, permissionName::$READ);
+    }
+
+    public function show(User $user, User $model)
+    {
+        return $this->hasPermission($user, permissionName::$READ);
+    }
+
     public function store(User $user, User $model)
     {
         return $this->hasPermission($user, permissionName::$WRITE);
