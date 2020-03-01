@@ -11,11 +11,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        factory(\App\User::class)->make([
             'name' => Str::random(10),
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('admin123'),
-        ]);
+            'password' => 'admin123',
+        ])->save();
         $group = \App\Models\PermissionGroup::find(1);
 
         \App\User::find(1)->permissionGroups()->attach($group);

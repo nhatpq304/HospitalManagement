@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\PermissionGroup;
+use App\Objects\PermissionObject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,6 +20,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        'address',
+        'birthday'
     ];
 
     /**
@@ -27,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 
     /**
@@ -36,8 +39,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime'
+
     ];
+
+    public function getPermissionsList()
+    {
+        $permissionList = [];
+        foreach ($this->permissionGroups as $group) {
+            foreach ($group->permissions as $permission) {
+                $permissionList[] = new PermissionObject($permission->permission_name, $permission->permission_type);
+            }
+        }
+
+        return $permissionList;
+    }
 
     public function setPasswordAttribute($value)
     {

@@ -14,18 +14,19 @@
 
 Route::group(['namespace' => 'Api'], function () {
     Route::get('test', function(){
-        $user = \App\User::find(1)->with('permissionGroups.permissions')->get();
+        $user = \App\User::find(1);
+//        ->with('permissionGroups.permissions')->get();
         return response()->json([
-            $user
+            $user->getPermissionsList()
         ]);
     });
-    Route::resource('users', 'UserController');
 
     Route::group(['prefix' => 'auth'], function () {
         Route::post('login', 'AuthController@login')->name('auth.login');
 
         Route::group(['middleware'=> 'auth:api'], function () {
             Route::get('user', 'AuthController@getUser')->name('auth.user');
+            Route::resource('users', 'UserController');
         });
     });
 

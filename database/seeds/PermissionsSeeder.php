@@ -11,7 +11,7 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
-        $groupName = ['Admin','Read', 'Update'];
+        $groupName = ['ADMIN','READ', 'UPDATE', 'WRITE'];
         foreach ($groupName as $group) {
             factory(\App\Models\Permission::class)->make([
                 'permission_name' => $group

@@ -32,7 +32,7 @@ class AuthController extends Controller
         $user = $request->user();
 
         return response()->json([
-            'user' => $user
+            'user' => new UserResource($user)
         ], 200);
     }
 }
