@@ -12,49 +12,52 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         try {
             $this->authorize('index', new User());
-
+            $user = User::all();
             return response()->json([
-            "user" => new UserResource($request->user())
-        ],201);
-        }catch (AuthorizationException $exception) {
+                "user" => UserResource::collection($user)
+            ], 200);
+        } catch (AuthorizationException $exception) {
             return response()->json([
                 'error' => 'Not authorized.'
             ], 403);
         }
     }
 
-    public function show(User $user) {
+    public function show(User $user)
+    {
         try {
             $this->authorize('show', new User());
 
             return response()->json([
                 "user" => new UserResource($user)
-            ],201);
-        }catch (AuthorizationException $exception) {
+            ], 201);
+        } catch (AuthorizationException $exception) {
             return response()->json([
                 'error' => 'Not authorized.'
             ], 403);
         }
     }
 
-    public function store(CreateUserRequest $request) {
+    public function store(CreateUserRequest $request)
+    {
         try {
             $this->authorize('store', new User());
 
             $user = new User();
             $user->fill($request->all());
 
-            if($user->save()) {
+            if ($user->save()) {
                 return response()->json([
                     "user" => new UserResource($user)
-                ],201);
-            }else {
-                return response()->json([],500);
+                ], 201);
+            } else {
+                return response()->json([], 500);
             }
-        }catch (AuthorizationException $exception) {
+        } catch (AuthorizationException $exception) {
             return response()->json([
                 'error' => 'Not authorized.'
             ], 403);
@@ -67,13 +70,14 @@ class UserController extends Controller
             $this->authorize('update', $user);
 
             $user->update([
-                'name'=> $request->name,
+                'name' => $request->name,
                 'address' => $request->address,
-                'birthday'=> $request->birthday,
+                'birthday' => $request->birthday,
                 'password' => $request->password,
+                'phone' => $request->phone,
             ]);
 
-            if(!$user->save()) {
+            if (!$user->save()) {
                 return response()->json([
                 ], 400);
             }
@@ -81,7 +85,7 @@ class UserController extends Controller
             return response()->json([
                 'data' => new UserResource($user)
             ], 200);
-        }catch (AuthorizationException $exception) {
+        } catch (AuthorizationException $exception) {
             return response()->json([
                 'error' => 'Not authorized.'
             ], 403);

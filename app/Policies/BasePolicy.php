@@ -10,6 +10,7 @@ namespace App\Policies;
 
 
 
+use App\Http\Enum\permissionName;
 use App\User;
 
 class BasePolicy
@@ -20,7 +21,7 @@ class BasePolicy
         $permissions = $user->getPermissionsList();
 
         foreach ($permissions as $permission) {
-            if ($permission->name == $perName && $permission->type == $this->permissionType) {
+            if (($permission->name == $perName || $permission->name == permissionName::$ADMIN ) && $permission->type == $this->permissionType) {
                 return true;
             }
         }
