@@ -12,7 +12,7 @@
 */
 
 
-Route::group(['namespace' => 'Api'], function () {
+Route::group(['namespace' => 'Api','middleware' => 'cors'], function () {
     Route::get('test', function(){
         $user = \App\User::find(1);
 //        ->with('permissionGroups.permissions')->get();
