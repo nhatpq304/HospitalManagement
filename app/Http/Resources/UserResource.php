@@ -20,6 +20,9 @@ class UserResource extends JsonResource
             'address' => $this->address,
             'birthday' => $this->birthday,
             'phone' => $this->phone,
+            'id_card_number' => $this->id_card_number,
+            'medical_card_number'=> $this->medical_card_number,
+            'avatar_image'=> $this->media[0]->media_link,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

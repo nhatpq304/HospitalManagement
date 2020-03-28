@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Models\Media;
 use App\Models\PermissionGroup;
+use App\Models\UsersMedia;
 use App\Objects\PermissionObject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,9 +21,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
         'address',
-        'birthday'
+        'birthday',
+        'id_card_number',
+        'medical_card_number'
     ];
 
     /**
@@ -61,5 +67,9 @@ class User extends Authenticatable
 
     public function permissionGroups(){
         return $this->belongsToMany(PermissionGroup::class, 'users_permission_groups', 'user_id', 'permission_group_id');
+    }
+
+    public function media(){
+        return $this->hasMany(Media::class);
     }
 }

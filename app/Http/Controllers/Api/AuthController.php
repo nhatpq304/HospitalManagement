@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Enum\mediaType;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class AuthController extends Controller
 {
     function login(LoginRequest $request)
@@ -25,11 +27,14 @@ class AuthController extends Controller
         return response()->json([
             'user' => new UserResource($user),
             'token' => $tokenResult->accessToken
-        ],200);
+        ], 200);
     }
 
-    function getUser(Request $request) {
-        $user = $request->user();
+    function getUser(Request $request)
+    {
+        $user = $request->user()->load(['media' => function ($q) {
+            $q->where('media_type', '=', mediaType::$IMAGE);
+        }]);
 
         return response()->json([
             'user' => new UserResource($user)
