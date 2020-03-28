@@ -13,6 +13,10 @@
 
 
 Route::group(['namespace' => 'Api'], function () {
+    Route::post('/test', function( Illuminate\Http\Request $request ){
+//        return $request;
+        \Illuminate\Support\Facades\Storage::disk('s3')->put('images', $request->image, 'public');;
+    });
     Route::group(['prefix' => 'auth'], function () {
         Route::post('login', 'AuthController@login')->name('auth.login');
 
