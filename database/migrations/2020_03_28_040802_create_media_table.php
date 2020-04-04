@@ -19,7 +19,7 @@ class CreateMediaTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('media_link');
             $table->enum("media_type", ['IMAGE', 'DOCUMENT', 'AVATAR']);
-            $table->boolean("is_active");
+            $table->boolean("is_active")->default(1);
             $table->timestamps();
         });
     }

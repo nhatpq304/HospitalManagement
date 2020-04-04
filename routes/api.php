@@ -19,6 +19,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::group(['middleware'=> 'auth:api'], function () {
             Route::get('user', 'AuthController@getUser')->name('auth.user');
             Route::resource('users', 'UserController');
+            Route::resource('media', 'MediaController')->only(['store','destroy']);
         });
     });
 });
