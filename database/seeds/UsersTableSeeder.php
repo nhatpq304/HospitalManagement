@@ -25,10 +25,9 @@ class UsersTableSeeder extends Seeder
             'media_type' => 'IMAGE',
             'is_active' => true
         ])->save();
-
-        factory(\App\User::class, 10)->create()->each(function ($user) {
+        factory(\App\User::class, 50)->create()->each(function ($user){
             $user->media()->make([
-                'media_link' => 'link',
+                'media_link' => 'https://happeacehospital.s3-ap-southeast-1.amazonaws.com/images/Lk3K28NbZnBGvVEWEPRpmGfyPsIwU9YeLE04OFd6.png',
                 'media_type' => 'IMAGE',
                 'is_active' => true
             ])->save();

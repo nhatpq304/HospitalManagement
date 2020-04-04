@@ -16,9 +16,20 @@ class UserController extends Controller
     {
         try {
             $this->authorize('index', new User());
-            $user = User::all();
+            $user = User::where(function($query) use ($request)  {
+                $user= new User();
+                $fillables = $user->getFillable();
+
+                foreach ($fillables as $fillable) {
+                    if(isset($request[$fillable])) {
+                        $query->where($fillable, $request[$fillable]);
+                    }
+                }
+
+            })->get();
             return response()->json([
-                "user" => UserResource::collection($user)
+                "user" => UserResource::collection($user),
+                "count" => count($user)
             ], 200);
         } catch (AuthorizationException $exception) {
             return response()->json([

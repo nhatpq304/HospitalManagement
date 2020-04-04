@@ -4,9 +4,7 @@ namespace App;
 
 use App\Models\Media;
 use App\Models\PermissionGroup;
-use App\Models\UsersMedia;
 use App\Objects\PermissionObject;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -27,7 +25,8 @@ class User extends Authenticatable
         'address',
         'birthday',
         'id_card_number',
-        'medical_card_number'
+        'medical_card_number',
+        'department'
     ];
 
     /**
@@ -47,6 +46,12 @@ class User extends Authenticatable
     protected $casts = [
 
     ];
+
+    public function getFillable()
+    {
+        return $this->fillable;
+    }
+
 
     public function getPermissionsList()
     {

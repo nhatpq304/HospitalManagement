@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique()->nullable();
+            $table->string('password')->nullable();
             $table->string('id_card_number')->unique()->nullable();
             $table->string('medical_card_number')->unique()->nullable();
-            $table->string('password')->nullable();
+            $table->enum('department', ['CARDIOLOGY', 'DERMATOLOGY', "DIETETICS"])->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->timestamp('birthday')->nullable();
