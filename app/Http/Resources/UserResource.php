@@ -28,6 +28,7 @@ class UserResource extends JsonResource
             'medical_card_number' => $this->medical_card_number,
             'department' => $this->department,
             'avatar_image' => isset($avatar) ? $avatar->media_link : "",
+            'gender'=> $this->gender,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

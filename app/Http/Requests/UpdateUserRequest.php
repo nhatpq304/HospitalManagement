@@ -25,9 +25,9 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'password' => 'required|min:6',
-            'birthday' => 'date',
-            'address' => 'string'
+            'email' => 'unique:users',
+            'id_card_number' => 'unique:users',
+            'medical_card_number' => 'unique:users',
         ];
     }
 }

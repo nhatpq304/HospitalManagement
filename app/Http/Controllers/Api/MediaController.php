@@ -35,8 +35,14 @@ class MediaController extends Controller
 
     public function store(ImageRequest $request)
     {
+
         $user = User::findOrFail($request->user_id);
-        $path = MediaController::$BASE_S3 . Storage::disk('s3')->put('images', $request->file, 'public');
+        $path = $this->putFile($request->file);
+
+        if(!$path) {
+            return response()->json([], 400);
+        }
+
         $this->media->fill(['media_link' => $path,
             'media_type' => mediaType::$AVATAR,
         ]);
@@ -76,9 +82,25 @@ class MediaController extends Controller
             } else {
                 return response()->json([], 500);
             }
-        }catch (\Exception $error )
-        {
+        } catch (\Exception $error) {
             return response()->json(['error' => $error], 500);
         }
+    }
+
+    private function putFile($base64)
+    {
+        list($extension, $content) = explode(';', $base64);
+        $tmpExtension = explode('/', $extension);
+        preg_match('/.([0-9]+) /', microtime(), $m);
+        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
+        $content = explode(',', $content)[1];
+        $path = 'images/' . $fileName;
+
+        $result = Storage::disk('s3')->put($path, base64_decode($content), 'public');
+        if($result){
+            return MediaController::$BASE_S3 . $path;
+
+        }
+        return null;
     }
 }

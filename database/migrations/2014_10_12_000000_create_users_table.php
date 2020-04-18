@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('id_card_number')->unique()->nullable();
             $table->string('medical_card_number')->unique()->nullable();
             $table->enum('department', ['CARDIOLOGY', 'DERMATOLOGY', "DIETETICS"])->nullable();
+            $table->string('gender')->default(0);
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->timestamp('birthday')->nullable();

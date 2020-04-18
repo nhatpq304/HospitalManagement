@@ -27,5 +27,6 @@ $factory->define(User::class, function (Faker $faker) use ($department) {
         'id_card_number'=> Str::uuid(),
         'medical_card_number' => Str::uuid(),
         'department' => $department[!!rand(0,1)?rand(0,3):0],
+        'gender'=> $faker->boolean(50)
     ];
 });

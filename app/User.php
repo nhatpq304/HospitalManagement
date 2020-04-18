@@ -26,7 +26,8 @@ class User extends Authenticatable
         'birthday',
         'id_card_number',
         'medical_card_number',
-        'department'
+        'department',
+        'gender'
     ];
 
     /**
