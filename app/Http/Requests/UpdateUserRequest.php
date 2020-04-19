@@ -25,7 +25,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'id_card_number' => 'required|unique:users',
+            'id_card_number' => 'required',
         ];
     }
 }
