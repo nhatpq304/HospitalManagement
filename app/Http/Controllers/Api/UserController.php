@@ -79,7 +79,7 @@ class UserController extends Controller
         }
     }
 
-    public function update(CreateUserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
         try {
             $this->authorize('update', $user);
