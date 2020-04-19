@@ -15,7 +15,7 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        $avatar = $this->media->firstWhere('media_type', mediaType::$AVATAR);
+        $avatar = $this->media->where('is_active',1)->firstWhere('media_type', mediaType::$AVATAR);
 
         return [
             'id' => $this->id,
@@ -27,7 +27,7 @@ class UserResource extends JsonResource
             'id_card_number' => $this->id_card_number,
             'medical_card_number' => $this->medical_card_number,
             'department' => $this->department,
-            'avatar_image' => isset($avatar) ? $avatar->media_link : "",
+            'avatar_image' => $avatar,
             'gender'=> $this->gender,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
