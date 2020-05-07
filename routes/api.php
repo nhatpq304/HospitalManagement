@@ -20,6 +20,7 @@ Route::group(['namespace' => 'Api'], function () {
             Route::get('user', 'AuthController@getUser')->name('auth.user');
             Route::resource('users', 'UserController');
             Route::resource('media', 'MediaController')->only(['store','destroy']);
+            Route::resource('medicines', 'MedicineController')->only(['index']);
         });
     });
 });
