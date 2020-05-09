@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\ExamResult;
 use App\Models\Media;
 use App\Models\PermissionGroup;
 use App\Objects\PermissionObject;
@@ -77,5 +78,13 @@ class User extends Authenticatable
 
     public function media(){
         return $this->hasMany(Media::class);
+    }
+
+    public function hasExamResults(){
+        return $this->hasMany(ExamResult::class, 'patient_id', 'id');
+    }
+
+    public function ownExamResults(){
+        return $this->hasMany(ExamResult::class, 'doctor_id', 'id');
     }
 }

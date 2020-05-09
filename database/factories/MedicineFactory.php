@@ -7,7 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Medicine::class, function (Faker $faker) {
     return [
-        'amount'=> $faker->numberBetween(0,2000),
-        'remark' => $faker->realText(200)
+        'remark' => $faker->realText(20)
     ];
 });

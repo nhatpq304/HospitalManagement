@@ -17,7 +17,6 @@ class CreateMedicineTable extends Migration
             $table->increments('id');
             $table->string('brand_name');
             $table->string('origin_name');
-            $table->integer('amount');
             $table->string('remark');
             $table->timestamps();
         });
