@@ -30,6 +30,7 @@ class CreateExamResultsTable extends Migration
             $table->string('blood_pressure')->nullable();
 
             $table->text('result')->nullable();
+            $table->boolean("active")->default(1);
             $table->timestamps();
         });
     }

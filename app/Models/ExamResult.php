@@ -17,6 +17,7 @@ class ExamResult extends Model
         'body_height',
         'blood_pressure',
         'result',
+        "active"
     ];
 
     public function patient(){
@@ -28,7 +29,7 @@ class ExamResult extends Model
     }
 
     public function medicines(){
-        return $this->belongsToMany(Medicine::class, 'exam_medicines', 'exam_id', 'medicine_id');
+        return $this->belongsToMany(Medicine::class, 'exam_medicines', 'exam_id', 'medicine_id')->withPivot('remark','amount');
     }
 
 }

@@ -24,8 +24,8 @@ $factory->define(User::class, function (Faker $faker) use ($department) {
         'password' => 'admin',
         'address' => $faker->address,
         'birthday' =>  \Carbon\Carbon::now(),
-        'id_card_number'=> Str::uuid(),
-        'medical_card_number' => Str::uuid(),
+        'id_card_number'=> rand(10000000000000,20000000000000),
+        'medical_card_number' => Str::random(13),
         'department' => $department[!!rand(0,1)?rand(0,3):0],
         'gender'=> $faker->boolean(50)
     ];
