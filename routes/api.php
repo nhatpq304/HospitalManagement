@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Api'], function () {
             Route::resource('media', 'MediaController')->only(['store','destroy']);
             Route::resource('medicines', 'MedicineController')->only(['index']);
             Route::resource('examResults', 'ExamResultController')->except(['edit','create']);
+            Route::resource('appointments', 'AppointmentController')->except(['edit','create']);
         });
     });
 });

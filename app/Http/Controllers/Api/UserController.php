@@ -30,6 +30,9 @@ class UserController extends Controller
                         $query->where($fillable, $request[$fillable]);
                     }
                 }
+                if(isset($request['is_doctor'])){
+                    $query->where('department', "LIKE", "%");
+                }
             })->get();
             return response()->json([
                 "user" => UserResource::collection($user),
