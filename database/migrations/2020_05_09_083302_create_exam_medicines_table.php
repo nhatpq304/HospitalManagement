@@ -21,6 +21,7 @@ class CreateExamMedicinesTable extends Migration
             $table->foreign('medicine_id')->references('id')->on('medicines');
             $table->integer('amount')->default(1);
             $table->string('remark')->nullable();
+            $table->boolean("active")->default(1);
             $table->timestamps();
         });
     }

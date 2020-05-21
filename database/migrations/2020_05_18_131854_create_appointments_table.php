@@ -22,7 +22,8 @@ class CreateAppointmentsTable extends Migration
             $table->foreign('patient_id')->references('id')->on('users');
             $table->timestamp('start_time');
             $table->timestamp('end_time');
-            $table->text('remark');
+            $table->text('remark')->nullable();
+            $table->boolean("active")->default(1);
             $table->timestamps();
         });
     }

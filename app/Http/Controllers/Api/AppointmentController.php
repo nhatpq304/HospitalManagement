@@ -17,7 +17,7 @@ class AppointmentController extends Controller
 
     public function index()
     {
-        $appointment = Appointment::with('patient', 'doctor')->get();
+        $appointment = Appointment::whereActive(1)->with('patient', 'doctor')->get();
 
         return response()->json(["data"=>$appointment], 200);
     }

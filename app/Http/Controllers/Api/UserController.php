@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         try {
             $this->authorize('index', $this->user);
-            $user = User::where(function ($query) use ($request) {
+            $user = User::whereActive(1)->where(function ($query) use ($request) {
                 $fillables =  $this->user->getFillable();
 
                 foreach ($fillables as $fillable) {
