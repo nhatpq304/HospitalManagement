@@ -17,7 +17,9 @@ class ExamResult extends Model
         'body_height',
         'blood_pressure',
         'result',
-        "active"
+        "active",
+        "reexamination_date",
+        "reminders"
     ];
 
     public function patient(){
