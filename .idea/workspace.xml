@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e3f0f68b-1f78-4cbf-a265-f7d0bf952afa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ExamResultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ExamResultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_07_140314_create_exam_results_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_07_140314_create_exam_results_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +32,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2020_05_07_140314_create_exam_results_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
+            <state relative-caret-position="295">
               <caret line="33" column="49" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="49" />
             </state>
           </provider>
@@ -42,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ExamResultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+            <state relative-caret-position="210">
+              <caret line="78" column="12" lean-forward="true" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="20" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
               </folding>
@@ -418,18 +417,18 @@
       <workItem from="1589460178124" duration="764000" />
       <workItem from="1589806499709" duration="2191000" />
       <workItem from="1589893327080" duration="2222000" />
-      <workItem from="1590067414083" duration="2208000" />
+      <workItem from="1590067414083" duration="2362000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80478000" />
+    <option name="totallyTimeSpent" value="80632000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.36666667" visible="true" weight="0.20604026" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.36666667" visible="true" weight="0.20604026" />
       <window_info id="Structure" order="1" sideWeight="0.6333333" side_tool="true" weight="0.25302014" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -444,7 +443,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.388102" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.42634562" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.42634562" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -812,15 +811,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_05_07_140314_create_exam_results_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
+        <state relative-caret-position="295">
           <caret line="33" column="49" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ExamResultController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+        <state relative-caret-position="210">
+          <caret line="78" column="12" lean-forward="true" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="20" />
           <folding>
             <element signature="e#44#80#0#PHP" expanded="true" />
           </folding>

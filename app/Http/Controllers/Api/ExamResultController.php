@@ -74,6 +74,8 @@ class ExamResultController extends Controller
             'body_height',
             'blood_pressure',
             'result',
+            'reexamination_date',
+            'reminders',
             'active'
         ]));
 
