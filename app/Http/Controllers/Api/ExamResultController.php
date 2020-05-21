@@ -35,7 +35,9 @@ class ExamResultController extends Controller
             'body_weight',
             'body_height',
             'blood_pressure',
-            'result'
+            'result',
+            'reexamination_date',
+            'reminders'
         ]));
 
         $this->examResult->save();

@@ -32,7 +32,6 @@ class CreateExamResultsTable extends Migration
             $table->text('result')->nullable();
             $table->text('reminders')->nullable();
             $table->timestamp('reexamination_date')->nullable();
-            $table->string('reexamination_department')->nullable();
 
             $table->boolean("active")->default(1);
             $table->timestamps();
