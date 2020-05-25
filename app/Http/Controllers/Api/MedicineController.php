@@ -23,7 +23,7 @@ class MedicineController extends Controller
     {
         $medicines = Medicine::all();
 
-        return response()->json([$medicines], 200);
+        return response()->json($medicines, 200);
     }
 
     /**
