@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Appointment;
 use App\Models\ExamResult;
 use App\Models\Media;
 use App\Models\PermissionGroup;
@@ -87,5 +88,9 @@ class User extends Authenticatable
 
     public function ownExamResults(){
         return $this->hasMany(ExamResult::class, 'doctor_id', 'id');
+    }
+
+    public function ownAppointments(){
+        return $this->belongsTo(Appointment::class,  'id', 'doctor_id');
     }
 }

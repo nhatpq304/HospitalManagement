@@ -30,7 +30,8 @@ class UserResource extends JsonResource
             'avatar_image' => $avatar,
             'gender'=> $this->gender,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'updated_at' => $this->updated_at,
+            'own_appointments'=> $this->ownAppointments,
         ];
     }
 }
