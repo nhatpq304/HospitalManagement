@@ -24,6 +24,7 @@ class UserController extends Controller
     {
         try {
             $this->authorize('index', $this->user);
+            $app =[];
             if (isset($request['validFrom']) && isset($request['validTo'])) {
                 $app = DB::table('appointments')->selectRaw('doctor_id')
                     ->where('id', '!=',$request['exceptFor'])
