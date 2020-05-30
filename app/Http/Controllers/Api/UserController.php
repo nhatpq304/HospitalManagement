@@ -26,18 +26,21 @@ class UserController extends Controller
             $this->authorize('index', $this->user);
             $app =[];
             if (isset($request['validFrom']) && isset($request['validTo'])) {
+                $from = date('Y/m/d H:i:s',substr($request['validFrom'],0,-3));
+                $to = date('Y/m/d H:i:s',substr($request['validTo'],0,-3));
+
                 $app = DB::table('appointments')->selectRaw('doctor_id')
                     ->where('id', '!=',$request['exceptFor'])
-                    ->where(function ($query) use ($request) {
-                        $query->where(function ($query) use ($request) {
-                            $query->where('end_time', ">=", $request['validFrom'])
-                                ->where('end_time', "<=", $request['validTo']);
-                        })->orWhere(function ($query) use ($request) {
-                            $query->where('start_time', ">=", $request['validFrom'])
-                                ->where('start_time', "<=", $request['validTo']);
-                        })->orWhere(function ($query) use ($request) {
-                            $query->where('start_time', "<=", $request['validFrom'])
-                                ->where('end_time', ">=", $request['validTo']);
+                    ->where(function ($query) use ($from, $to) {
+                        $query->where(function ($query) use ($from, $to) {
+                            $query->where('end_time', ">=", $from)
+                                ->where('end_time', "<=", $to);
+                        })->orWhere(function ($query) use ($from, $to) {
+                            $query->where('start_time', ">=", $from)
+                                ->where('start_time', "<=", $to);
+                        })->orWhere(function ($query) use ($from, $to) {
+                            $query->where('start_time', "<=", $from)
+                                ->where('end_time', ">=", $to);
                         });
                     })->get()->pluck('doctor_id')->toArray();
             }
