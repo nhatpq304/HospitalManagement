@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Resources\UserResource;
-use App\Models\Appointment;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -30,7 +29,11 @@ class UserController extends Controller
                 $to = date('Y/m/d H:i:s',substr($request['validTo'],0,-3));
 
                 $app = DB::table('appointments')->selectRaw('doctor_id')
-                    ->where('id', '!=',$request['exceptFor'])
+                    ->where(function ($query) use($request){
+                        if($request['exceptFor']){
+                            $query->where('id', '!=',$request['exceptFor']);
+                        }
+                    })
                     ->where(function ($query) use ($from, $to) {
                         $query->where(function ($query) use ($from, $to) {
                             $query->where('end_time', ">=", $from)
