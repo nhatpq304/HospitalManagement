@@ -29,6 +29,7 @@ class UserController extends Controller
                 $to = date('Y/m/d H:i:s',substr($request['validTo'],0,-3));
 
                 $app = DB::table('appointments')->selectRaw('doctor_id')
+                    ->whereActive(1)
                     ->where(function ($query) use($request){
                         if($request['exceptFor']){
                             $query->where('id', '!=',$request['exceptFor']);
