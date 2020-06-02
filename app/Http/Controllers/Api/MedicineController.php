@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Medicine;
+use App\Models\MedicinesImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use mysql_xdevapi\Exception;
 
 class MedicineController extends Controller
 {
@@ -44,7 +47,14 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            Excel::import(new MedicinesImport(),$request->file('file'));
+            return response()->json([],201);
+
+        }
+        catch (\Exception $e){
+            return response()->json([], 500);
+        }
     }
 
     /**

@@ -10,11 +10,12 @@ class MedicineSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   $medicines= ['Paracetamol 500', 'Alphachoay', 'Panadol', 'Berberin', 'Cồn 90', 'Histamin', 'Oresol'];
+    {
+        $medicines = ['Paracetamol 500', 'Alphachoay', 'Panadol', 'Berberin', 'Cồn 90', 'Histamin', 'Oresol'];
         foreach ($medicines as $medicine) {
             factory(\App\Models\Medicine::class)->make([
-                'brand_name' => $medicine,
-                'origin_name' => $medicine
+                'name' => $medicine,
+                'unit' => 'Hộp'
             ])->save();
         }
     }
