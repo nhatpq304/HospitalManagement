@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Medicine;
 use App\Models\MedicinesImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
-use mysql_xdevapi\Exception;
 
 class MedicineController extends Controller
 {
@@ -47,14 +47,18 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            Excel::import(new MedicinesImport(),$request->file('file'));
+        list($extension, $content) = explode(';', $request->file);
+        $tmpExtension = explode('/', $extension);
+        preg_match('/.([0-9]+) /', microtime(), $m);
+        $fileName = sprintf('img%s%s.%s', date('YmdHis'), $m[1], $tmpExtension[1]);
+        $content = explode(',', $content)[1];
+
+        $path = 'excel/' . $fileName;
+        Storage::put($path, base64_decode($content), 'public');
+
+        Excel::import(new MedicinesImport(),$path);
             return response()->json([],201);
 
-        }
-        catch (\Exception $e){
-            return response()->json([], 500);
-        }
     }
 
     /**
