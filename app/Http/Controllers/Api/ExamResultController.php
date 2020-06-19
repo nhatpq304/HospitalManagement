@@ -56,7 +56,7 @@ class ExamResultController extends Controller
 
     public function show(ExamResult $examResult)
     {
-        $examResult = $examResult->load('patient', 'doctor', 'medicines');
+        $examResult = $examResult->load('patient' ,'patient.media', 'doctor',  'medicines' );
 
         return response()->json(['data' => $examResult], 200);
     }
