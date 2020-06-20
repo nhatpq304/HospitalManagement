@@ -12,9 +12,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(\App\User::class)->make([
-            'name' => Str::random(10),
+            'name' => 'NhatAdmin',
             'email' => 'admin@gmail.com',
             'password' => 'admin123',
+            'department' => 'CARDIOLOGY'
         ])->save();
         $group = \App\Models\PermissionGroup::find(1);
 
