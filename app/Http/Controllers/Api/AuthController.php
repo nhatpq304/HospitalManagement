@@ -39,4 +39,12 @@ class AuthController extends Controller
             'user' => new UserResource($user)
         ], 200);
     }
+
+    function getUserPermissions(Request $request){
+        $permissions = $request->user()->getPermissionsList();
+
+        return response()->json([
+            'permissions' => $permissions
+        ], 200);
+    }
 }

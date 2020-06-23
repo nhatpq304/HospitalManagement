@@ -94,11 +94,11 @@ class UserController extends Controller
     {
         try {
             $this->authorize('store', $this->user);
-
             $this->user->fill($request->all());
-
             if ($this->user->save()) {
-
+                if(isset($this->user->department)){
+                    $this->user->permissionGroups()->sync([2]);
+                }
                 return response()->json([
                     "user" => new UserResource($this->user)
                 ], 201);
@@ -116,16 +116,18 @@ class UserController extends Controller
     {
         try {
             $this->authorize('update', $user);
-
             $user->update($request->all());
 
-            if ($user->save()) {
-                return response()->json([
+            if(isset($user->department)){
+                $user->permissionGroups()->sync([2]);
+            }else {
+                $user->permissionGroups()->sync([]);
+            }
+
+            return response()->json([
                     'data' => new UserResource($user)
                 ], 200);
-            }
-            return response()->json([
-            ], 400);
+
         } catch (AuthorizationException $exception) {
             return response()->json([
                 'error' => 'Not authorized.'

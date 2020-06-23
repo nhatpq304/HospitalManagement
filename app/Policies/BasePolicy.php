@@ -19,9 +19,8 @@ class BasePolicy
 
     public function hasPermission(User $user, String $perName) {
         $permissions = $user->getPermissionsList();
-
         foreach ($permissions as $permission) {
-            if (($permission->name == $perName || $permission->name == permissionName::$ADMIN ) && $permission->type == $this->permissionType) {
+            if (($permission->name == $perName  && $permission->type == $this->permissionType)|| $permission->name == permissionName::$ADMIN ) {
                 return true;
             }
         }

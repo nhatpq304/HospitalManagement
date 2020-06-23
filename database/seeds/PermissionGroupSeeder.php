@@ -11,13 +11,12 @@ class PermissionGroupSeeder extends Seeder
      */
     public function run()
     {
-        $groupName = ['Admin', 'Manager', 'Doctors'];
+        $groupName = ['Admin', 'Doctors'];
         foreach ($groupName as $group) {
             factory(\App\Models\PermissionGroup::class)->make([
                 'group_name' => $group
             ])->save();
         }
-
 
     }
 }
