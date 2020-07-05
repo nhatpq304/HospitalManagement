@@ -21,6 +21,6 @@ class UsersTableSeeder extends Seeder
 
         \App\User::find(1)->permissionGroups()->attach($group);
         $group->permissions()->attach(\App\Models\Permission::find(1));
-        factory(\App\User::class, 50)->create();
+//        factory(\App\User::class, 50)->create();
     }
 }

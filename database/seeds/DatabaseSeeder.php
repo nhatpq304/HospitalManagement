@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionGroupSeeder::class );
         $this->call(PermissionsSeeder::class );
         $this->call(UsersTableSeeder::class);
-        $this->call(MedicineSeeder::class);
-        $this->call(ExamResultSeeder::class);
-        $this->call(AppointmentSeeder::class);
+//        $this->call(MedicineSeeder::class);
+//        $this->call(ExamResultSeeder::class);
+//        $this->call(AppointmentSeeder::class);
     }
 }
