@@ -119,9 +119,9 @@ class UserController extends Controller
             $user->update($request->all());
 
             if(isset($user->department)){
-                $user->permissionGroups()->sync([2]);
+                $user->permissionGroups()->attach([2]);
             }else {
-                $user->permissionGroups()->sync([]);
+                $user->permissionGroups()->detach([2]);
             }
 
             return response()->json([
